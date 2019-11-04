@@ -16,6 +16,8 @@
  * questions, and fix your mistakes. It's the only way to get good at programming.
  */
 
+ import java.lang.*;
+
 public class ProblemSet5 {
 
     public static void main(String[] args) {
@@ -26,6 +28,8 @@ public class ProblemSet5 {
         System.out.println(ps.middleMan("abcdefghi"));
         System.out.println(ps.isCentered("abcdefghi", "def"));
         System.out.println(ps.countMe("abc abc ccc def ghi jkl", 'c'));
+        System.out.println(ps.triplets("DT6syyyUuubVKV25Ty9FYYYRq6"));
+        System.out.println(ps.addMe("1fawasad9as"));
 
     }
     /*
@@ -142,9 +146,16 @@ public class ProblemSet5 {
     //  * Given a string, compute the number of triplets in text.
     //  */
     //
-    // public int triplets(String text) {
-    //
-    // }
+    public int triplets(String text) {
+        int tripletCount = 0;
+        for(int i = 1; i < text.length(); i++){
+            String tripletLetter = text.substring(i,i+1);
+            if((text.substring(i-1,i).equals(tripletLetter)) && (text.substring(i,i+1).equals(tripletLetter)) && (text.substring(i+1,i+2).equals(tripletLetter))){
+                tripletCount++;
+            }
+        }
+        return tripletCount;
+    }
     //
     // /*
     //  * Exercise 7.
@@ -152,9 +163,18 @@ public class ProblemSet5 {
     //  * Given a string, compute the sum of the digits in text.
     //  */
     //
-    // public long addMe(String text) {
-    //
-    // }
+    public long addMe(String text) {
+        int addMeSum = 0;
+        if(text == null || text.equals(null)){
+            return -1;
+        }
+        for(int j = 0; j < text.length(); j++){
+            if(Character.isDigit(text.charAt(j))){
+                addMeSum += Integer.valueOf(text.substring(j,j+1));
+            }
+        }
+        return addMeSum;
+    }
     //
     // /*
     //  * Exercise 8.
@@ -162,9 +182,13 @@ public class ProblemSet5 {
     //  * Given a string, compute the length of the longest sequence.
     //  */
     //
-    // public long sequence(String text) {
-    //
-    // }
+    public long sequence(String text) {
+        String[] textArray = text.split(" ");
+        int longestWord =
+        for(int k = 0; k < textArray.length; k++){
+
+        }
+    }
     //
     // /*
     //  * Exercise 9.
