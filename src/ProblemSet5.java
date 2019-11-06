@@ -23,13 +23,10 @@ public class ProblemSet5 {
     public static void main(String[] args) {
         ProblemSet5 ps = new ProblemSet5();
 
-        System.out.println(ps.surroundMe("h","1234"));
-        System.out.println(ps.endsMeet("Christoph",3));
-        System.out.println(ps.middleMan("abcdefghi"));
-        System.out.println(ps.isCentered("abcdefghi", "def"));
-        System.out.println(ps.countMe("abc abc ccc def ghi jkl", 'c'));
-        System.out.println(ps.triplets("DT6syyyUuubVKV25Ty9FYYYRq6"));
-        System.out.println(ps.addMe("1fawasad9as"));
+        System.out.println(ps.sequence("abbcccdddd"));
+        System.out.println(ps.sequence("aAabBbBb"));
+        System.out.println(ps.sequence(""));
+        System.out.println(ps.sequence(null));
 
     }
     /*
@@ -183,11 +180,24 @@ public class ProblemSet5 {
     //  */
     //
     public long sequence(String text) {
-        String[] textArray = text.split(" ");
-        int longestWord =
-        for(int k = 0; k < textArray.length; k++){
-
+        if(text == null || text.equals(null)){
+            return -1;
+        }else if(text.length() == 0){
+            return 0;
         }
+        String[] textArray = text.split("");
+        int longestSeries = -1;
+        String workingString = "";
+        for(int i = text.length()-1; i > -1; i--){
+            for(int j = text.length(); j > 0; j--){
+            workingString += textArray[i];
+            if(text.indexOf(workingString) > 0 && workingString.length() > longestSeries){
+                longestSeries = workingString.length();
+            }
+            }
+            workingString = "";
+        }
+        return longestSeries;
     }
     //
     // /*
