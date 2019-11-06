@@ -17,16 +17,18 @@
  */
 
  import java.lang.*;
+ import java.util.*;
 
 public class ProblemSet5 {
 
     public static void main(String[] args) {
         ProblemSet5 ps = new ProblemSet5();
 
-        System.out.println(ps.sequence("abbcccdddd"));
-        System.out.println(ps.sequence("aAabBbBb"));
-        System.out.println(ps.sequence(""));
-        System.out.println(ps.sequence(null));
+        System.out.println(ps.intertwine("aceg", "bdfh"));
+        System.out.println(ps.intertwine("abc", "12345"));
+        System.out.println(ps.intertwine(null, "abcd"));
+        System.out.println(ps.intertwine("abcd", null));
+        System.out.println(ps.intertwine(null, null));
 
     }
     /*
@@ -207,9 +209,50 @@ public class ProblemSet5 {
     //  * characters of a and b.
     //  */
     //
-    // public String intertwine(String a, String b) {
-    //
-    // }
+    public String intertwine(String a, String b) {
+        if(a == null || a.equals(null)){
+            return null;
+        }else if(b == null || b.equals(null)){
+            return null;
+        }
+        if(a == "" || a.equals("")){
+            return b;
+        }else if(b == "" || b.equals("")){
+            return a;
+        }
+
+        int aNumberCount = 0;
+        int bNumberCount = 0;
+
+        String[] aArray = a.split("");
+        String[] bArray = b.split("");
+        String[] abArray = new String[(aArray.length + bArray.length)];
+
+        for(int i = 0; i < abArray.length; i++){
+            if(aNumberCount == (a.length())){
+                abArray[i] = b.substring(bNumberCount);
+                break;
+            }else if(bNumberCount == (b.length())){
+                abArray[i] = a.substring(aNumberCount);
+                break;
+            }
+            if(i%2 == 0 && aArray[aNumberCount] != null){
+                abArray[i] = aArray[aNumberCount];
+                aNumberCount++;
+            }else if(i%2 != 0 && bArray[bNumberCount] != null){
+                abArray[i] = bArray[bNumberCount];
+                bNumberCount++;
+            }
+        }
+        for(int z = 0; z < abArray.length; z++){
+            if(abArray[z] == null){
+                abArray[z] = "";
+            }
+        }
+
+        return String.join("",abArray);
+
+    }
     //
     // /*
     //  * Exercise 10.
