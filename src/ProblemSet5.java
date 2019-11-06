@@ -24,11 +24,9 @@ public class ProblemSet5 {
     public static void main(String[] args) {
         ProblemSet5 ps = new ProblemSet5();
 
-        System.out.println(ps.intertwine("aceg", "bdfh"));
-        System.out.println(ps.intertwine("abc", "12345"));
-        System.out.println(ps.intertwine(null, "abcd"));
-        System.out.println(ps.intertwine("abcd", null));
-        System.out.println(ps.intertwine(null, null));
+        System.out.println(ps.isPalindrome("racecar"));
+        System.out.println(ps.isPalindrome("Madam"));
+        System.out.println(ps.isPalindrome(null));
 
     }
     /*
@@ -260,7 +258,29 @@ public class ProblemSet5 {
     //  * Given a string, determine whether or not it is a palindrome.
     //  */
     //
-    // public boolean isPalindrome(String text) {
-    //
-    // }
+    public boolean isPalindrome(String text) {
+        if(text == null || text.equals(null)){
+            return false;
+        }
+        String[] textArray = text.split("");
+        int palindromeCount = 0;
+        for(int i = 0; i < text.length()-1; i++){
+            for(int j = text.length()-1; j != 0; j--){
+                System.out.println(textArray[i] + " " + textArray[j]);
+                System.out.println(textArray[i].equals(textArray[j]));
+                if(textArray[i].equals(textArray[j])){
+                    palindromeCount++;
+                    break;
+                }else if(textArray[i] != textArray[j]){
+                    break;
+                }
+            }
+        }
+        System.out.println(palindromeCount);
+        if(palindromeCount == (text.length()/2)){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
