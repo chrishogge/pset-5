@@ -22,11 +22,6 @@
 public class ProblemSet5 {
 
     public static void main(String[] args) {
-        ProblemSet5 ps = new ProblemSet5();
-
-        System.out.println(ps.isPalindrome("racecar"));
-        System.out.println(ps.isPalindrome("Madam"));
-        System.out.println(ps.isPalindrome(null));
 
     }
     /*
@@ -39,6 +34,8 @@ public class ProblemSet5 {
     public String surroundMe(String in, String out) {
 
         if(in == null || out == null){
+            return in;
+        }else if(out.length() != 4){
             return in;
         }
 
@@ -144,11 +141,24 @@ public class ProblemSet5 {
     //  */
     //
     public int triplets(String text) {
+        if(text == null || text.equals(null)){
+            return -1;
+        }else if(text.length() == 3){
+            if(text.substring(0,1) == text.substring(1,2) && text.substring(1,2) == text.substring(1,3)){
+                return 1;
+            }else{
+                return 0;
+            }
+        }
         int tripletCount = 0;
         for(int i = 1; i < text.length(); i++){
             String tripletLetter = text.substring(i,i+1);
-            if((text.substring(i-1,i).equals(tripletLetter)) && (text.substring(i,i+1).equals(tripletLetter)) && (text.substring(i+1,i+2).equals(tripletLetter))){
-                tripletCount++;
+            if(text.length() > i+1){
+                if((text.substring(i-1,i).equals(tripletLetter))
+                && (text.substring(i,i+1).equals(tripletLetter))
+                && (text.substring(i+1,i+2).equals(tripletLetter))){
+                    tripletCount++;
+                }
             }
         }
         return tripletCount;
@@ -264,20 +274,16 @@ public class ProblemSet5 {
         }
         String[] textArray = text.split("");
         int palindromeCount = 0;
-        for(int i = 0; i < text.length()-1; i++){
-            for(int j = text.length()-1; j != 0; j--){
-                System.out.println(textArray[i] + " " + textArray[j]);
-                System.out.println(textArray[i].equals(textArray[j]));
-                if(textArray[i].equals(textArray[j])){
+        String text1 = "";
+        String text2 = "";
+        for(int j = text.length()-1; j > -1; j--){
+                text1 = textArray[j];
+                text2 = textArray[((text.length()-1)-j)];
+                if(text1.equals(text2)){
                     palindromeCount++;
-                    break;
-                }else if(textArray[i] != textArray[j]){
-                    break;
                 }
             }
-        }
-        System.out.println(palindromeCount);
-        if(palindromeCount == (text.length()/2)){
+        if(palindromeCount == (text.length())){
             return true;
         }else{
             return false;
